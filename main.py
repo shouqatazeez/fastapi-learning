@@ -3,7 +3,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
-@app.get('/')
+@app.get('/blogs')
 def intro():
 
     return {'data': {
@@ -11,10 +11,25 @@ def intro():
     }}
 
 
-@app.get('/about')
-def aboutpage():
+@app.get('/blogs/unpubliched')
+def unpubliched():
+    return {'data': "unpublicedblogs"}
+
+
+@app.get('/blogs/{id}')
+def aboutpage(id: int):
     return {
         'data': {
-            'aboutpage'
+            id
+        }
+    }
+
+
+@app.get('/blogs/{id}/comments')
+def blogcomment(id):
+    return {
+        'data': {
+            '1',
+            '2'
         }
     }
