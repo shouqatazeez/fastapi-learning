@@ -4,16 +4,15 @@ app = FastAPI()
 
 
 @app.get('/blogs')
-def intro():
-
-    return {'data': {
-        'name': "shouqat"
-    }}
-
+def intro(limit):
+# This is the example of the query parameter
+  return{
+    'data':f'The {limit} blocks from the database'
+  }
 
 @app.get('/blogs/unpublished')
 def unpublished():
-    return {'data': "unpublisedblogs"}
+    return {'data': "unpublisdblogs"}
 
 
 @app.get('/blogs/{id}')
@@ -26,10 +25,12 @@ def aboutpage(id: int):
 
 
 @app.get('/blogs/{id}/comments')
-def blogcomment(id):
+def blogcomment(id:str):
     return {
         'data': {
             '1',
             '2'
         }
     }
+
+
