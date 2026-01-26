@@ -4,11 +4,22 @@ app = FastAPI()
 
 
 @app.get('/blogs')
-def intro(limit):
-# This is the example of the query parameter
-  return{
-    'data':f'The {limit} blocks from the database'
-  }
+# This is the example of the query parameter 
+# http://127.0.0.1:8000/blogs?limit=10$=&published=True
+def intro(limit=10, published:bool = True ):
+    if published:
+        return{
+            'data':f'The {limit} Published blocks from the database'
+        }
+    else:
+        return{
+        'data':f'The {limit} blocks from the database'
+         }
+
+
+    
+
+  
 
 @app.get('/blogs/unpublished')
 def unpublished():
