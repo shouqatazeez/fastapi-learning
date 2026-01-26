@@ -11,9 +11,9 @@ def intro():
     }}
 
 
-@app.get('/blogs/unpubliched')
-def unpubliched():
-    return {'data': "unpublicedblogs"}
+@app.get('/blogs/unpublished')
+def unpublished():
+    return {'data': "unpublisedblogs"}
 
 
 @app.get('/blogs/{id}')
