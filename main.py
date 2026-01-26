@@ -1,9 +1,14 @@
 from fastapi import FastAPI
+# This is how we import BaseModel for the purpose of the post the data into the database
+from pydantic import BaseModel
+
+#This is how we import Optinal from the typing
+from typing import Optional
 
 app = FastAPI()
 
 
-@app.get('/blogs')
+@app.get('/')
 # This is the example of the query parameter 
 # http://127.0.0.1:8000/blogs?limit=10$=&published=True
 def intro(limit=10, published:bool = True ):
@@ -15,9 +20,6 @@ def intro(limit=10, published:bool = True ):
         return{
         'data':f'The {limit} blocks from the database'
          }
-
-
-    
 
   
 
@@ -44,4 +46,18 @@ def blogcomment(id:str):
         }
     }
 
+
+#This is how we create the post method and use it 
+
+class Model (BaseModel):
+    title:str
+    body:str
+    published:Optional[bool]
+
+
+
+@app.post('/blogs')
+def blogpost(request:Model):
+    return{f'blog is created with the {request.title}'}
+    
 
