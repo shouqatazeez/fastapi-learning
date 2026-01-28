@@ -1,8 +1,10 @@
 from fastapi import FastAPI
+from schema import Example
+
 
 app = FastAPI()
 
-@app.post('/')
 
-def create(title, body):
-    return {'title':title, 'body':body}
+@app.post('/hello')
+def create(request:Example):
+    return request
