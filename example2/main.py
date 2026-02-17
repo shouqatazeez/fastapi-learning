@@ -1,10 +1,14 @@
 from fastapi import FastAPI
-from schema import Example
-
+from pydantic import BaseModel
 
 app = FastAPI()
 
+class blog(BaseModel):
+    name:str
+    body:str
 
-@app.post('/hello')
-def create(request:Example):
-    return request
+@app.post('/blog')
+def create_element(storedata:blog):
+    return storedata
+    
+
