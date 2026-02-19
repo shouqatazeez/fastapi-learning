@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-class Example(BaseModel):
+class blog(BaseModel):
     title:str
     body:str
