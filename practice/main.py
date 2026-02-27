@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -14,3 +15,15 @@ def name(name:str):
 @app.get('/search')
 def products(name:str, price:int):
     return {"product":name,"productprice":price}
+
+class products(BaseModel):
+    name:str
+    price:int
+
+@app.post('/product')
+def list(product:products):
+    return{
+        "Item name":product.name,
+        "pricetag":product.price
+
+    }
