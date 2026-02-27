@@ -8,4 +8,9 @@ def name():
 
 @app.get('/data/{name}')
 def name(name:str):
-    return f"Assamualikm {name}"
+    return f"Assalmualikm {name}"
+
+
+@app.get('/search')
+def products(name:str, price:int):
+    return {"product":name,"productprice":price}
