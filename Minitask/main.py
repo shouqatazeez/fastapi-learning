@@ -11,6 +11,13 @@ class Task(BaseModel):
 tasks = []
 
 @app.post('/itemslist')
-def items(product:Task):
+def items(product: Task):
     tasks.append(product)
-    return tasks
+    return product
+
+@app.get('/itemslist/{id}')
+def idbased(id:int):
+    for task in tasks:
+        if task.id == id:
+            return task
+    return {"not fount"}      
