@@ -9,3 +9,7 @@ def server_status():
 @app.get('/users/{username}')
 def username(username):
     return  {"greeting": f"Hello, {username}!"}
+
+@app.get('/search')
+def search_database(keyword:str, limit:int):
+    return {"search_result": f'Searching for the keyword:{keyword} and  showing {limit} results.'}
