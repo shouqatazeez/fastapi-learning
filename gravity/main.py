@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -24,7 +24,12 @@ def register(user_data:UserProfile):
     "registered_user":user_data.email,
     "user_age":user_data.age}
 
-
+@app.get('/user/{userid}')
+def user(userid:str):
+    if userid=='admin':
+        return {"success": True}
+    else:
+     raise HTTPException(status_code=404,detail="usernot foun")
 
 
 
