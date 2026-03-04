@@ -1,5 +1,5 @@
 from fastapi import FastAPI,HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 
 app = FastAPI()
 
@@ -49,4 +49,12 @@ def pizzadetails(pizza:str):
 def list_of_products(category:str=None, max_price:int=100, on_sale:bool=False):
     return{"productcategory":category, "productprice":max_price, "status":on_sale}
 
-    
+class user(BaseModel):
+    username:str = Field(..., min_length =3, max_length=15)
+    age:int = Field(..., gt=0, lt=120)
+@app.post('/userdetails')
+def details(model:user):
+    return{
+        "message":'user created successfully',"data":model
+    }
+
