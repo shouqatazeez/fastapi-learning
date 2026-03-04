@@ -45,5 +45,8 @@ def pizzadetails(pizza:str):
     } 
     return kitchen_data
 
+@app.get('/products')
+def list_of_products(category:str=None, max_price:int=100, on_sale:bool=False):
+    return{"productcategory":category, "productprice":max_price, "status":on_sale}
 
     
