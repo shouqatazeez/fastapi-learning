@@ -29,9 +29,21 @@ def user(userid:str):
     if userid=='admin':
         return {"success": True}
     else:
-     raise HTTPException(status_code=404,detail="usernot foun")
+     raise HTTPException(status_code=404,detail="user not found")
 
+class public_pizza(BaseModel):
+    name:str
+    price:float
 
+@app.get('/order/{pizza}',response_model=public_pizza)
+def pizzadetails(pizza:str):
+    kitchen_data = {
+      "name":pizza,
+      "price":1000,
+      'cost_to_make':600,
+      'secret_recipe':3
+    } 
+    return kitchen_data
 
 
     
