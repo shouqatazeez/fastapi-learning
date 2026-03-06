@@ -55,6 +55,25 @@ class user(BaseModel):
 @app.post('/userdetails')
 def details(model:user):
     return{
-        "message":'user created successfully',"data":model
+       "message":'user created successfully',"data":model
+    }
+
+class student_details(BaseModel):
+    street:str
+    town:str
+    doorno:int
+
+class student(BaseModel):
+    name:str = Field(..., min_length=3, max_length=15)
+    age:int = Field(..., gt=0, lt=30)
+    id:int = Field(..., gt=10, lt=12)
+
+    studentdetails:student_details  
+
+@app.post('/registry')
+def registry_student(data:student):
+    return{
+        "message":"student registry perfectely",
+         "data": data
     }
 
