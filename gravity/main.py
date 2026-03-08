@@ -30,6 +30,7 @@ def search_database(keyword:str, limit:int):
 
 class UserProfile(BaseModel):
     email:str
+    name:str
     age:int
 @app.post('/register')
 def register(user_data:UserProfile):
@@ -90,3 +91,15 @@ def registry_student(data:student):
          "data": data
     }
 
+@app.post('/db_register')
+def create_db_user(user:UserProfile, db:Session= Depends(get_db)):
+
+    new_db_user = models.User(email=user.email, name=user.name)
+
+    db.add(new_db_user)
+
+    db.commit()
+
+    db.refresh(new_db_user)
+
+    return{'message':'saved to database', "user":new_db_user}
